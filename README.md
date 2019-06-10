@@ -1,7 +1,7 @@
 # curso-django
 Curso de iniciación al desarrollo de aplicaciones web con Python y Django paso a paso
 
-## Paso 1: Crear proyecto y aplicación Django
+### Paso 1: Crear proyecto y aplicación Django
 
 - Crear el entorno virtual
 
@@ -80,7 +80,7 @@ Curso de iniciación al desarrollo de aplicaciones web con Python y Django paso 
 
 		python manage.py migrate myapp
 		
-## Paso 2: Crear la primera vista
+### Paso 2: Crear la primera vista
 
 - Dentro del directorio de la app, abrir `views.py` y añadir lo siguiente:
 ```python
@@ -120,7 +120,7 @@ urlpatterns = [
 
 - De este modo tenemos un `urls.py` en cada directorio de nuestras aplicaciones gestionados desde el `urls.py` del directorio del proyecto.
 
-## Paso 3: Crear el modelo 
+### Paso 3: Crear el modelo 
 
 - Editar el fichero `models.py` de la aplicación creando las clases Empresa y Trabajador:
 ```python
@@ -146,23 +146,8 @@ class Trabajador(models.Model):
 $ python manage.py makemigrations <app_name>
 $ python manage.py migrate
 ```
-*Note: including <app_name> is optional.*
-- A one-to-many relationship can be made with a `ForeignKey`:
-```python
-class Musician(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    instrument = models.CharField(max_length=100)
 
-class Album(models.Model):
-    artist = models.ForeignKey(Musician, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    release_date = models.DateField()
-    num_stars = models.IntegerField()
-```
-- In this example, to query for the set of albums of a musician:
-
-## Paso4: Añadir y consultar registros desde la API
+### Paso 4: Añadir y consultar registros desde la API
 
 ```python
 >>> from GestorRedesWebApp.models import Empresa, Trabajador

@@ -164,3 +164,25 @@ Egibide
 >>> Empresa.objects.filter(nombre__contains='Egibide').count()
 1
 ```
+
+### Paso 5: Uso de la aplicación de Administración
+
+- Crear un usuario para la aplicación de Administración 
+
+```
+python manage.py createsuperuser
+```
+
+- Iniciar el servidor y entrar
+
+```
+python manage.py runserver
+```
+
+- Entrar en la aplicación http://127.0.0.1:8000/admin 
+
+### Paso 6: Mostrar información mediante vistas
+
+TODO
+
+

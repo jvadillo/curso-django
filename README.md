@@ -83,101 +83,101 @@ Curso de iniciación al desarrollo de aplicaciones web con Python y Django paso 
 ### Paso 2: Crear la primera vista
 
 - Dentro del directorio de la app, abrir `views.py` y añadir lo siguiente:
-```python
-from django.http import HttpResponse
+	```python
+	from django.http import HttpResponse
 
-def index(request):
-    return HttpResponse("Hello, World!")
-```
+	def index(request):
+	    return HttpResponse("Hello, World!")
+	```
 - Abrir (o crear) el fichero  `urls.py` y añadir el patrón para la siguiente ruta:
-```python
-from django.urls import path
-from . import views
+	```python
+	from django.urls import path
+	from . import views
 
-urlpatterns = [
-    path('', views.index, name='index'),
-]
-```
+	urlpatterns = [
+	    path('', views.index, name='index'),
+	]
+	```
 - Dentro del directorio del proyecto, editar `urls.py` para incluir la redirección al fichero  `urls.py` de la alpicación:
 
-```python
-urlpatterns = [
-    path("", include('app.urls')),
-]
-```
+	```python
+	urlpatterns = [
+	    path("", include('app.urls')),
+	]
+	```
 
 - El resultado debe ser el siguiente:
 
-```python
-from django.contrib import admin
-from django.urls import include, path
+	```python
+	from django.contrib import admin
+	from django.urls import include, path
 
-urlpatterns = [
-    path('app/', include('app.urls')),
-    path('admin/', admin.site.urls),
-]
-```
+	urlpatterns = [
+	    path('app/', include('app.urls')),
+	    path('admin/', admin.site.urls),
+	]
+	```
 
 - De este modo tenemos un `urls.py` en cada directorio de nuestras aplicaciones gestionados desde el `urls.py` del directorio del proyecto.
 
 ### Paso 3: Crear el modelo 
 
 - Editar el fichero `models.py` de la aplicación creando las clases Empresa y Trabajador:
-```python
-from django.db import models
+	```python
+	from django.db import models
 
-class Empresa(models.Model):
-   # No es necesario crear un campo para la Primary KEy, Django creará automáticamente un IntegerField.
-   nombre = models.CharField(max_length=50)
-   cif = models.CharField(max_length=12)
+	class Empresa(models.Model):
+	   # No es necesario crear un campo para la Primary KEy, Django creará automáticamente un IntegerField.
+	   nombre = models.CharField(max_length=50)
+	   cif = models.CharField(max_length=12)
 
-class Trabajador(models.Model):
-   # No es necesario crear un campo para la Primary KEy, Django creará automáticamente un IntegerField.
-   # Campo para la relación one-to-many
-   empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
-   nombre = models.CharField(max_length=40)
-   fecha_nacimiento = models.DateField()
-   # Es posible indicar un valor por defecto mediante 'default'
-   antiguedad = models.IntegerField(default=0)
-```
+	class Trabajador(models.Model):
+	   # No es necesario crear un campo para la Primary KEy, Django creará automáticamente un IntegerField.
+	   # Campo para la relación one-to-many
+	   empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
+	   nombre = models.CharField(max_length=40)
+	   fecha_nacimiento = models.DateField()
+	   # Es posible indicar un valor por defecto mediante 'default'
+	   antiguedad = models.IntegerField(default=0)
+	```
 
 - Aplica los cambios realizados en el modelo mediante los siguientes comandos:
-```
-$ python manage.py makemigrations <app_name>
-$ python manage.py migrate
-```
+	```
+	$ python manage.py makemigrations <app_name>
+	$ python manage.py migrate
+	```
 
 ### Paso 4: Añadir y consultar registros desde la API
 
-```python
->>> from GestorRedesWebApp.models import Empresa, Trabajador
->>> empresa = Empresa(nombre="Egibide", cif="26136015B")
->>> empresa.save()
-# Django le asigna un id.
->>> empresa.id
-1
-# Acceder a sus atributos
->>> empresa.nombre
-Egibide
->>> Empresa.objects.all()
-<QuerySet [<Empresa: Empresa object (1)>]>
->>> Empresa.objects.filter(nombre__contains='Egibide').count()
-1
-```
+	```python
+	>>> from GestorRedesWebApp.models import Empresa, Trabajador
+	>>> empresa = Empresa(nombre="Egibide", cif="26136015B")
+	>>> empresa.save()
+	# Django le asigna un id.
+	>>> empresa.id
+	1
+	# Acceder a sus atributos
+	>>> empresa.nombre
+	Egibide
+	>>> Empresa.objects.all()
+	<QuerySet [<Empresa: Empresa object (1)>]>
+	>>> Empresa.objects.filter(nombre__contains='Egibide').count()
+	1
+	```
 
 ### Paso 5: Uso de la aplicación de Administración
 
 - Crear un usuario para la aplicación de Administración 
 
-```
-python manage.py createsuperuser
-```
+	```
+	python manage.py createsuperuser
+	```
 
 - Iniciar el servidor y entrar
 
-```
-python manage.py runserver
-```
+	```
+	python manage.py runserver
+	```
 
 - Entrar en la aplicación http://127.0.0.1:8000/admin 
 

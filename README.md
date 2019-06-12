@@ -149,21 +149,21 @@ Curso de iniciación al desarrollo de aplicaciones web con Python y Django paso 
 
 ### Paso 4: Añadir y consultar registros desde la API
 
-	```python
-	>>> from GestorRedesWebApp.models import Empresa, Trabajador
-	>>> empresa = Empresa(nombre="Egibide", cif="26136015B")
-	>>> empresa.save()
-	# Django le asigna un id.
-	>>> empresa.id
-	1
-	# Acceder a sus atributos
-	>>> empresa.nombre
-	Egibide
-	>>> Empresa.objects.all()
-	<QuerySet [<Empresa: Empresa object (1)>]>
-	>>> Empresa.objects.filter(nombre__contains='Egibide').count()
-	1
-	```
+		```python
+		>>> from GestorRedesWebApp.models import Empresa, Trabajador
+		>>> empresa = Empresa(nombre="Egibide", cif="26136015B")
+		>>> empresa.save()
+		# Django le asigna un id.
+		>>> empresa.id
+		1
+		# Acceder a sus atributos
+		>>> empresa.nombre
+		Egibide
+		>>> Empresa.objects.all()
+		<QuerySet [<Empresa: Empresa object (1)>]>
+		>>> Empresa.objects.filter(nombre__contains='Egibide').count()
+		1
+		```
 
 ### Paso 5: Uso de la aplicación de Administración
 
